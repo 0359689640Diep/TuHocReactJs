@@ -1,4 +1,12 @@
-.dark{
-  color: #fff;
-  background-color: #333;
+.testCss{
+  width: 100px;
+  height: 100px;
+  border: 2px solid;
+  padding: 0 30px;
+  margin: 100px auto;
+}
+.testCss>h1{
+  color: red;
+  background-color: aqua;
+  font-size: 20px;
 }

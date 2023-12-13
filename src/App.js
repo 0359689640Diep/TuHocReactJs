@@ -1,24 +1,8 @@
-import {  useEffect, useRef } from "react";
-import Video from "./videos";
+import Heading from "./components/Heading";
 function App() {
-  const videoRef = useRef();
-  // test
-  useEffect(() => {
-    console.log(videoRef.current)
-  })
-
-  const handlePlay = () => {
-    videoRef.current.play()
-  }
-  const handlePause = () => {
-    videoRef.current.pause()
-  }
-
   return (
-    <div>
-      <Video ref={videoRef} ></Video>
-      <button onClick={handlePlay} >Play</button>
-      <button onClick={handlePause} >Pause</button>
+    <div className="testCss">
+      <Heading></Heading>
     </div>
   );
 }
