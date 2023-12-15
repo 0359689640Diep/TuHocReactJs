@@ -1,0 +1,6 @@
+.d-flex{
+    display: flex;
+    background-color: aqua;
+    justify-content: space-between;
+    align-items: center;
+}
