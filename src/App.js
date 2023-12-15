@@ -1,18 +1,17 @@
-import Heading from "./components/Heading";
-import Paragaph from "./components/Paragraph";
+// import clsx
+import clsx from "clsx";
+
 import GlobalStyle  from "./components/GlobalStyle";
+import Button from "./components/Button";
 function App() {
   return (
-    <div className="testCss">
     <GlobalStyle>
-      <Heading></Heading>
-      <Paragaph></Paragaph>
-      <section className="d-flex">
-        <span>Item1</span>
-        <span>Item2</span>
-      </section>
-    </GlobalStyle>
+    <div style={{padding: "60px 45px"}}>
+        <Button ></Button>
+        <Button primary></Button>
     </div>
+    </GlobalStyle>
+
   );
 }
 
