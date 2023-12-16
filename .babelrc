@@ -1,0 +1,12 @@
+{
+    "plugins": [
+      ["module-resolver", {
+        "alias": {
+          "@": "./src"
+        }
+      }]
+    ]
+  }
+/*
+cách sử dụng: import App from "@/App"
+*/
