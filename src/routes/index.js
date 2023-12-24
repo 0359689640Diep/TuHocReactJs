@@ -13,7 +13,7 @@ const pulicRouter = [
         path: '/', component: Home,
     },
     {
-        path: '/Profile', component: Profile,
+        path: '/@:nickname', component: Profile,
     },
     {
         path: '/Upload', component: Upload, 
