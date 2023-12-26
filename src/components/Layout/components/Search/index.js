@@ -6,11 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner, faCircleXmark, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "tippy.js/dist/tippy.css"
 
-
 // import module
 import { wrapper as PopperWrapper } from "@/components/Popper";
 import styles from "./Search.module.scss";
 import AccountItem from "@/components/AccountItem";
+import useDebounce from "@/hooks/useDebounce";
+import * as searchServices from "@/apiServices/searchServices";
 
 const cx  = classNames.bind(styles);
 function Search() {
@@ -20,21 +21,22 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const debounce = useDebounce(searchValue, 500)
+
     const inputRef = useRef();
 
     useEffect(() =>{
-        if(!searchValue.trim()){ setSearchResult([]); return}
+        if(!debounce.trim()){ setSearchResult([]); return}
         setLoading(true);
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-        .then((res) => res.json())
-        .then((res) => {
-            setSearchResult(res.data);
-            setLoading(false);
-        })
-        .catch(() => {
-            setLoading(false);
-        })
-    }, [searchValue])
+
+        // goi api
+        const fectAPI = async () => {
+            setLoading(true);
+            const result = await searchServices.search(debounce);
+            setSearchResult(result);
+        }
+        fectAPI();
+    }, [debounce])
 
     const handleClear = () =>{
         setSearchValue("");
