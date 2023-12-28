@@ -1,30 +1,32 @@
+import config from "@/config";
+
 // layout
-import {HeaderOnly} from "@/components/Layout"
+import {HeaderOnly} from "@/layouts"
 
 // pages
-import Home from "@/pages/Home";
-import Following from "@/pages/Following";
-import Profile from "@/pages/Profile"
-import Upload from "@/pages/Upload"
-import Search from "@/pages/Search"
+import  Home from "@/pages/Home";
+import  Following from "@/pages/Following";
+import  Profile from "@/pages/Profile"
+import  Upload from "@/pages/Upload"
+import  Search from "@/pages/Search"
 // sử dụng cho những router không cần đăng nhập
 const pulicRouter = [
     {
-        path: '/', component: Home,
+        path: config.routes.Home, component: Home,
     },
     {
-        path: '/@:nickname', component: Profile,
+        path: config.routes.Profile, component: Profile,
     },
     {
-        path: '/Upload', component: Upload, 
+        path: config.routes.Upload, component: Upload, 
         layout: HeaderOnly
     },
     {
-        path: '/Search', component: Search, 
+        path: config.routes.Search, component: Search, 
         layout: null
     },
     {
-        path: '/Following', component: Following
+        path: config.routes.Following, component: Following
     }
 ]
 

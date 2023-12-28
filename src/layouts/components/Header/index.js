@@ -1,10 +1,10 @@
 // import thư viện
-import { useEffect, useState } from "react";
 import classNames from "classnames/bind";
 import Tippy from '@tippyjs/react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisVertical, faEarthAsia, faCircleQuestion, faKeyboard,  faCloudUpload,  faUser, faGear, faCoins, faSignOut,  } from "@fortawesome/free-solid-svg-icons";
 import "tippy.js/dist/tippy.css"
+import { Link } from "react-router-dom";
 
 
 // import module
@@ -14,6 +14,8 @@ import Button from "@/components/Button";
 import Menu from "@/components/Popper/Menu";
 import Image from "@/components/Image";
 import Search from "../Search";
+import config from "@/config";
+
 
 const cx  = classNames.bind(styles);
 
@@ -31,7 +33,7 @@ const MENU_ITEM = [
                 {
                     code: "vn",
                     title: "Viet Nam"
-                },
+                }
 
             ]
         }
@@ -86,7 +88,8 @@ function Header() {
             <div className={cx("inner")}>
 
               <div className={cx('logo')}>
-                <img src={images.logo} alt="TikTok"></img>
+              <Link to={config.routes.Home} className={cx("logo-link")}> <img src={images.logo} alt="TikTok"></img> </Link>
+                
               </div>
                 <Search/>
 

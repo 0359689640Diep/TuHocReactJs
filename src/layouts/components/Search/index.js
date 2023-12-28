@@ -11,7 +11,7 @@ import { wrapper as PopperWrapper } from "@/components/Popper";
 import styles from "./Search.module.scss";
 import AccountItem from "@/components/AccountItem";
 import useDebounce from "@/hooks/useDebounce";
-import * as searchServices from "@/apiServices/searchServices";
+import * as searchServices from "@/Services/searchService";
 
 const cx  = classNames.bind(styles);
 function Search() {
@@ -34,6 +34,7 @@ function Search() {
             setLoading(true);
             const result = await searchServices.search(debounce);
             setSearchResult(result);
+            setLoading(false);
         }
         fectAPI();
     }, [debounce])
@@ -45,8 +46,17 @@ function Search() {
     }
 
     const handleHideResult = () => {
+        
         setShowResult(false)
     }
+        const handleChange = (e) => {
+            const searchValue = e.target.value;
+
+            if (!searchValue.startsWith(" ") || searchValue.trim() !== "") {
+                setSearchValue(searchValue);
+            }
+        }
+
     return ( 
     <HeadlessTippy
         visible={showResult && searchResult.length > 0}
@@ -73,7 +83,7 @@ function Search() {
                     ref={inputRef}
                     value={searchValue}
                     placeholder="Search account and video" spellCheck={false}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                    onChange={handleChange}
                     onFocus={() => setShowResult(true)}
                 />
                 {!!searchValue && !loading && (
@@ -86,7 +96,7 @@ function Search() {
             {loading && <FontAwesomeIcon className= {cx("faSpinner")} icon={faSpinner} />}
             
 
-            <button className= {cx("search-btn")}>
+            <button className= {cx("search-btn")} onMouseDown={e => e.preventDefault()}>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
             </button>
         </div>
