@@ -2,6 +2,7 @@ import classNames from "classnames/bind";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import styles from "./AcountItem.module.scss"
 import Image from "@/components/Image";
@@ -26,4 +27,8 @@ function AccountItem({data}) {
      );
 }
 
+// hàm không nhận kiểu dữ liệu object 
+AccountItem.propTypes = {
+    data: PropTypes.object.isRequired
+}
 export default AccountItem;
